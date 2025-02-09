@@ -1,8 +1,8 @@
 const Description = () => {
   return (
-    <div>
-      <h1>Sip Happens Café</h1>
-      <p>
+    <div className="description">
+      <h1 className="descriptionHeader">Sip Happens Café</h1>
+      <p className="descriptionText">
         Please leave your feedback about our service by selecting one of the
         options below.
       </p>

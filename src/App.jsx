@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
-import styles from "./App.module.css"; // Правильний імпорт стилів
+import styles from "./App.module.css";
 
 const App = () => {
-  // Ініціалізація стану з localStorage або значенням за замовчуванням
   const [feedback, setFeedback] = useState(() => {
     const savedFeedback = localStorage.getItem("feedback");
     return savedFeedback
@@ -13,15 +12,12 @@ const App = () => {
       : { good: 0, neutral: 0, bad: 0 };
   });
 
-  // Синхронізація стану з localStorage
   useEffect(() => {
     localStorage.setItem("feedback", JSON.stringify(feedback));
   }, [feedback]);
 
-  // Обчислення загальної кількості відгуків
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
-  // Функція для оновлення стану
   const updateFeedback = (feedbackType) => {
     setFeedback((prevFeedback) => ({
       ...prevFeedback,
@@ -29,7 +25,6 @@ const App = () => {
     }));
   };
 
-  // Функція для скидання стану
   const resetFeedback = () => {
     setFeedback({ good: 0, neutral: 0, bad: 0 });
   };
