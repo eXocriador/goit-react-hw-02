@@ -13,10 +13,6 @@ const App = () => {
       : { good: 0, neutral: 0, bad: 0 };
   });
 
-  useEffect(() => {
-    localStorage.setItem("feedback", JSON.stringify(feedback));
-  }, [feedback]);
-
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
   const positivePercentage =
@@ -29,18 +25,14 @@ const App = () => {
     }));
   };
 
-  const resetFeedback = () => {
-    setFeedback({ good: 0, neutral: 0, bad: 0 });
-  };
+  useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(feedback));
+  }, [feedback]);
 
   return (
     <div>
       <Description />
-      <Options
-        updateFeedback={updateFeedback}
-        totalFeedback={totalFeedback}
-        resetFeedback={resetFeedback}
-      />
+      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} />
       {totalFeedback > 0 ? (
         <Feedback
           good={feedback.good}
